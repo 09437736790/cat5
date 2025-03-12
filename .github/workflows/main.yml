@@ -1,0 +1,24 @@
+name: Atualizar GitHub
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # permite executar manualmente
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      - name: Executar mensagem de teste
+        run: echo Hello, world!
+
+      - name: Enviar código para Github
+        run: |
+          git remote add github-mirror https://oauth2:${{ secrets.personaltoken }}git@github.com:09437736790/cat5.git
+          git push --mirror github-mirror
