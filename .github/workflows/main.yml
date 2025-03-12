@@ -20,5 +20,5 @@ jobs:
 
       - name: Enviar código para Github
         run: |
-          git remote add github-mirror https://oauth2:${{ secrets.personaltoken }}git@github.com/09437736790/cat5.git
+          git remote add github-mirror https://oauth2:${{ secrets.personaltoken }}github.com/09437736790/cat5.git
           git push --mirror github-mirror
