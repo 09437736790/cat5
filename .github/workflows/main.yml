@@ -16,8 +16,8 @@ jobs:
       - name: Criar um novo arquivo para commit
         
         run: |
-          git config --global user.email "bastcord@gmail.com"
-          git config --global user.name "09437736790"
+          git config user.email "bastcord@gmail.com"
+          git config user.name "09437736790"
           echo "Arquivo gerado automaticamente" > novo-arquivo.txt
           git add novo-arquivo.txt
           git commit -m "Adicionando novo arquivo automaticamente"
@@ -25,8 +25,8 @@ jobs:
       - name: Git Push Action
         uses: x-actions/git-push@v1.0
         with:
-          GITHUB_EMAIL: "bastcord@gmail.com"
-          GITHUB_USERNAME: "09437736790"
+          #GITHUB_EMAIL: "bastcord@gmail.com"
+          #GITHUB_USERNAME: "09437736790"
           PUBLISH_REPO: "https://x-access-token:${{ secrets.PERSONALTOKEN }}@github.com/09437736790/cat5.git"
           PUBLISH_BRANCH: "develop"
           PUBLISH_DIR: "."  # Publica todas as alterações do diretório raiz
