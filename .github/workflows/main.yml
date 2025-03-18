@@ -29,7 +29,7 @@ jobs:
         with:
             GITHUB_EMAIL: "bastcord@gmail.com"
             GITHUB_USERNAME: "09437736790" 
-            PUBLISH_REPO: "https://$GH_PAT@github.com/09437736790/cat5.git"
+            PUBLISH_REPO: "https://x-access-token:${{ secrets.PERSONALTOKEN }}@github.com/09437736790/cat5.git" #"https://$GH_PAT@github.com/09437736790/cat5.git"
             PUBLISH_BRANCH: develop
             PUBLISH_DIR: "."
                   
