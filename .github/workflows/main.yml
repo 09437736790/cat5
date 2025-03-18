@@ -18,10 +18,18 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      - name: Executar mensagem de teste
-        run: echo Hello, world!
-
       - name: Enviar código para Github
         run: |
-          git remote add github-mirror https://$GH_PAT@github.com/09437736790/cat5.git
-          git push --mirror github-mirror
+          echo "Arquivo gerado automaticamente" > novo-arquivo.txt
+          git add novo-arquivo.txt
+          git commit -m "Adicionando novo arquivo automaticamente"
+
+      - name: Git Push Action
+        uses: x-actions/git-push@v1.0
+        with:
+            GITHUB_EMAIL: "bastcord@gmail.com"
+            GITHUB_USERNAME: "09437736790" 
+            PUBLISH_REPO: "https://$GH_PAT@github.com/09437736790/cat5.git"
+            PUBLISH_BRANCH: develop
+            PUBLISH_DIR: "."
+                  
