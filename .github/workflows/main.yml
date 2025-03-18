@@ -1,24 +1,19 @@
-name: v1
+name: Git Push Example
+
 on:
   push:
-    branches: [ "develop" ]
-  pull_request:
-    branches: [ "develop" ]
-
-  # permite executar manualmente
-  workflow_dispatch:
-env:
- GH_PAT: ${{ secrets.GH_PAT }}
-
+    branches:
+      - develop
 
 jobs:
-  build:
+  push-changes:
     runs-on: ubuntu-latest
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
 
-      - name: Enviar código para Github
+    steps:
+      - name: Checkout código-fonte
+        uses: actions/checkout@v3
+
+      - name: Criar um novo arquivo para commit
         run: |
           echo "Arquivo gerado automaticamente" > novo-arquivo.txt
           git add novo-arquivo.txt
@@ -27,9 +22,8 @@ jobs:
       - name: Git Push Action
         uses: x-actions/git-push@v1.0
         with:
-            GITHUB_EMAIL: "bastcord@gmail.com"
-            GITHUB_USERNAME: "09437736790" 
-            PUBLISH_REPO: "https://x-access-token:${{ secrets.PERSONALTOKEN }}@github.com/09437736790/cat5.git" #"https://$GH_PAT@github.com/09437736790/cat5.git"
-            PUBLISH_BRANCH: develop
-            PUBLISH_DIR: "."
-                  
+          GITHUB_EMAIL: "bastcord@gmail.com"
+          GITHUB_USERNAME: "09437736790"
+          PUBLISH_REPO: "https://x-access-token:${{ secrets.PERSONALTOKEN }}@github.com/09437736790/cat5.git"
+          PUBLISH_BRANCH: "develop"
+          PUBLISH_DIR: "."  # Publica todas as alterações do diretório raiz
