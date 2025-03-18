@@ -14,10 +14,6 @@ jobs:
       - name: Checkout código-fonte
         uses: actions/checkout@v3
 
-      - name: Configurar identidade do Git
-        run: |
-          git config --global user.email "bastcord@gmail.com"
-          git config --global user.name "09437736790"
       - name: Criar um arquivo e comitar na branch develop
         run: |
           echo "Arquivo gerado automaticamente" > novo-arquivo.txt
