@@ -13,8 +13,7 @@ jobs:
       - name: Checkout código-fonte
         uses: actions/checkout@v3
 
-      - name: Criar um novo arquivo para commit
-        
+      - name: Configurar identidade do Git
         run: |
           git config --global user.email "bastcord@gmail.com"
           git config --global user.name "09437736790"
@@ -27,8 +26,8 @@ jobs:
       - name: Git Push Action
         uses: x-actions/git-push@v1.0
         with:
-          #GITHUB_EMAIL: "bastcord@gmail.com"
-          #GITHUB_USERNAME: "09437736790"
+          GITHUB_EMAIL: "bastcord@gmail.com"
+          GITHUB_USERNAME: "09437736790"
           PUBLISH_REPO: "https://x-access-token:${{ secrets.PERSONALTOKEN }}@github.com/09437736790/cat5.git"
           PUBLISH_BRANCH: "develop"
           PUBLISH_DIR: "."  # Publica todas as alterações do diretório raiz
