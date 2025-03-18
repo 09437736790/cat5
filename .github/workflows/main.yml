@@ -4,7 +4,8 @@ on:
   push:
     branches:
       - develop
-
+permissions:
+  contents: write
 jobs:
   push-changes:
     runs-on: ubuntu-latest
@@ -28,6 +29,6 @@ jobs:
         with:
           GITHUB_EMAIL: "bastcord@gmail.com"
           GITHUB_USERNAME: "09437736790"
-          PUBLISH_REPO: "https://x-access-token:${{ secrets.PERSONALTOKEN }}@github.com/09437736790/cat5.git"
+          PUBLISH_REPO: "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/09437736790/cat5.git"
           PUBLISH_BRANCH: "develop"
           PUBLISH_DIR: "."  # Publica todas as alterações do diretório raiz
