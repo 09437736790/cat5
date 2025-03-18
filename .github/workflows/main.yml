@@ -14,7 +14,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Criar um novo arquivo para commit
+        
         run: |
+          git config --global user.email "bastcord@gmail.com"
+          git config --global user.name "09437736790"
           echo "Arquivo gerado automaticamente" > novo-arquivo.txt
           git add novo-arquivo.txt
           git commit -m "Adicionando novo arquivo automaticamente"
