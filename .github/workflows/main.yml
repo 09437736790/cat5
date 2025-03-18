@@ -1,4 +1,4 @@
-pname: Atualizar GitHub
+name: Atualizar GitHub
 on:
   push:
     branches: [ "develop" ]
