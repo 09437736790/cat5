@@ -1,27 +1,37 @@
-name: Trabalho
+name: Trabalho CI
 
 on:
   push:
     branches:
       - develop
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout do código
+      uses: actions/checkout@v4
       with:
-        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
-        fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
-    - name: Create local changes
+        persist-credentials: false
+        fetch-depth: 0
+
+    - name: Criar alterações locais
       run: |
-        ...
-    - name: Commit files
+        echo "Alteração de exemplo" >> arquivo.txt
+
+    - name: Configurar Git e Commitar mudanças
       run: |
         git config --local user.email "bastcord@gmail.com"
         git config --local user.name "09437736790"
-        git commit -a -m "Add changes"
-    - name: Push changes
+        git add .
+        if git diff --cached --quiet; then
+          echo "Nenhuma mudança para commit"
+        else
+          git commit -m "Add changes"
+        fi
+
+    - name: Push das alterações
       uses: ad-m/github-push-action@master
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref }}
+        github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }} # Melhor usar um PAT com permissões de escrita
+        branch: develop
