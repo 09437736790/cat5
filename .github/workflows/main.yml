@@ -1,24 +1,27 @@
-name: Exemplo
+name: Trabalho
 
 on:
   push:
     branches:
       - develop
-permissions:
-  contents: write
 jobs:
-  push-changes:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout código-fonte
-        uses: actions/checkout@v3
-
-      - name: Git Push Action
-        uses: x-actions/git-push@v1.0
-        with:
-          GITHUB_EMAIL: "bastcord@gmail.com"
-          GITHUB_USERNAME: "09437736790"
-          PUBLISH_REPO: "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/09437736790/cat5.git"
-          PUBLISH_BRANCH: "develop"
-          PUBLISH_DIR: "."  # Publica todas as alterações do diretório raiz
+    - uses: actions/checkout@v4
+      with:
+        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+        fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+    - name: Create local changes
+      run: |
+        ...
+    - name: Commit files
+      run: |
+        git config --local user.email "bastcord@gmail.com"
+        git config --local user.name "09437736790"
+        git commit -a -m "Add changes"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
