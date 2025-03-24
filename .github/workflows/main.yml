@@ -21,8 +21,8 @@ jobs:
 
     - name: Configurar Git e Commitar mudanças
       run: |
-        git config --local user.email "bastcord@gmail.com"
-        git config --local user.name "09437736790"
+        git config --global user.email "bastcord@gmail.com"
+        git config --global user.name "09437736790"
         git add .
         if git diff --cached --quiet; then
           echo "Nenhuma mudança para commit"
